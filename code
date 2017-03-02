@@ -1,0 +1,79 @@
+const int trig = 12;
+const int echo = 11;
+int high=0;
+int low=0;
+void straight()
+{
+  digitalWrite(5,HIGH);
+  digitalWrite(6,LOW);
+  digitalWrite(7,LOW);
+  digitalWrite(8,HIGH);
+}
+void rit()
+{
+  digitalWrite(5,HIGH);
+  digitalWrite(6,LOW);
+  digitalWrite(7,LOW);
+  digitalWrite(8,LOW);
+}
+void left()
+{
+  digitalWrite(5,LOW);
+  digitalWrite(6,LOW);
+  digitalWrite(7,LOW);
+  digitalWrite(8,HIGH);
+}
+  
+  void stp()
+{
+  digitalWrite(5,LOW);
+  digitalWrite(6,LOW);
+  digitalWrite(7,LOW);
+  digitalWrite(8,LOW);
+}
+void rev()
+{
+  digitalWrite(5,LOW);
+  digitalWrite(6,HIGH);
+  digitalWrite(7,HIGH);
+  digitalWrite(8,LOW);
+ 
+}
+  
+void setup() {
+  // put your setup code here, to run once:
+Serial.begin(9600);
+ pinMode(trig, OUTPUT);
+ pinMode(echo, INPUT);
+ pinMode(5,OUTPUT);
+ pinMode(6,OUTPUT);
+ pinMode(7,OUTPUT);
+ pinMode(8,OUTPUT);
+}
+
+void loop() {
+  digitalWrite(trig, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trig, HIGH);
+  delayMicroseconds(5);
+  digitalWrite(trig, LOW);
+  float duration = pulseIn(echo, HIGH);
+  float cm = duration / 29 / 2;
+    Serial.println(cm);
+  if(cm>7)
+  {
+ straight(); 
+  }
+   if(cm<12.00)
+  {
+   
+    rit();
+ 
+
+  }
+  if (cm<7){
+  rev();
+ 
+}
+
+}
